@@ -1,0 +1,55 @@
+name: CI
+
+on:
+
+  push:
+
+  pull_request:
+
+  workflow_dispatch:
+
+jobs:
+
+  fpm:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - uses: actions/checkout@v5
+
+      - name: Install fpm
+        uses: fortran-lang/setup-fpm@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Verify installation; gfortran
+        run: gfortran --version
+
+      - name: Verify installation; fpm
+        run: fpm --version
+
+  ford:
+
+    needs: [fpm]
+
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+
+      - uses: actions/checkout@v5
+
+      - name: Install FORD
+        run: sudo pip install ford
+
+      - name: Verify FORD installation
+        run: ford --version
+
+      - name: Install Graphviz
+        run: sudo apt-get install -y graphviz
+
+      - name: Verify Graphviz installation
+        run: dot -V
