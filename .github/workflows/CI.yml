@@ -14,6 +14,12 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    strategy:
+
+      matrix:
+
+        profile: [debug, release]
+
     steps:
 
       - uses: actions/checkout@v5
@@ -28,6 +34,12 @@ jobs:
 
       - name: Verify installation; fpm
         run: fpm --version
+
+      - name: Check if this library can be built
+        run: fpm build --profile ${{ matrix.profile }}
+
+      - name: Test this library
+        run: fpm test --profile ${{ matrix.profile }}
 
   ford:
 
@@ -53,3 +65,20 @@ jobs:
 
       - name: Verify Graphviz installation
         run: dot -V
+
+      - name: Generate documentation
+        run: ford ford.md
+
+      - name: Upload documentation
+        uses: actions/upload-artifact@v4
+        with:
+          name: documentation
+          path: doc
+          if-no-files-found: error
+
+      - name: Deploy documentation
+        uses: JamesIves/github-pages-deploy-action@v4
+        if: ${{ github.event_name == 'push'  &&  github.ref == 'refs/heads/main' }}
+        with:
+          branch: github-pages
+          folder: doc
