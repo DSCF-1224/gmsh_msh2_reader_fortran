@@ -35,6 +35,9 @@ jobs:
       - name: Verify installation; fpm
         run: fpm --version
 
+      - name: Check if this library can be built
+        run: fpm build --profile ${{ matrix.profile }}
+
       - name: Test this library
         run: fpm test --profile ${{ matrix.profile }}
 
