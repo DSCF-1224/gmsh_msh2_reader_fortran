@@ -14,6 +14,12 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    strategy:
+
+      matrix:
+
+        profile: [debug, release]
+
     steps:
 
       - uses: actions/checkout@v5
@@ -28,6 +34,9 @@ jobs:
 
       - name: Verify installation; fpm
         run: fpm --version
+
+      - name: Test this library
+        run: fpm test --profile ${{ matrix.profile }}
 
   ford:
 
