@@ -65,3 +65,20 @@ jobs:
 
       - name: Verify Graphviz installation
         run: dot -V
+
+      - name: Generate documentation
+        run: ford ford.md
+
+      - name: Upload documentation
+        uses: actions/upload-artifact@v4
+        with:
+          name: documentation
+          path: doc
+          if-no-files-found: error
+
+      - name: Deploy documentation
+        uses: JamesIves/github-pages-deploy-action@v4
+        if: ${{ github.event_name == 'push'  &&  github.ref == 'refs/heads/main' }}
+        with:
+          branch: github-pages
+          folder: doc
