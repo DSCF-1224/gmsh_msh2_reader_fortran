@@ -2,6 +2,10 @@
 !> Fortran module for reading |GmshReferenceManualMshFileFormat2|
 module gmsh_msh2_reader
 
+    use, non_intrinsic :: gmsh_msh_format_fortran
+
+
+
     implicit none
 
 
