@@ -7,6 +7,7 @@ src_dir: ./src
 display: public
          protected
          private
+extra_mods: gmsh_msh_format_fortran: https://dscf-1224.github.io/gmsh_msh_format_fortran
 source: true
 proc_internals: true
 md_extensions: markdown.extensions.toc
