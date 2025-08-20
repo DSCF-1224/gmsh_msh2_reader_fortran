@@ -15,6 +15,7 @@ sort: permission-alpha
 print_creation_date: true
 creation_date: %Y-%m-%d %H:%M %z
 license: mit
+alias: GmshReferenceManualMshFileFormat2 = [Gmsh MSH file format version 2](https://gmsh.info/doc/texinfo/gmsh.html#MSH-file-format-version-2-_0028Legacy_0029)
 ---
 
 [TOC]
