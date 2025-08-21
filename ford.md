@@ -8,7 +8,6 @@ display: public
          protected
          private
 extra_mods: gmsh_msh_format_fortran: https://dscf-1224.github.io/gmsh_msh_format_fortran
-extra_mods: gmsh_msh2_data_type: https://dscf-1224.github.io/gmsh_msh_format_fortran/type/gmsh_msh_format_type.html
 source: true
 proc_internals: true
 md_extensions: markdown.extensions.toc
