@@ -25,7 +25,7 @@ jobs:
       - uses: actions/checkout@v5
 
       - name: Install fpm
-        uses: fortran-lang/setup-fpm@v7
+        uses: fortran-lang/setup-fpm@v9
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -70,7 +70,7 @@ jobs:
         run: ford ford.md
 
       - name: Upload documentation
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: documentation
           path: doc
